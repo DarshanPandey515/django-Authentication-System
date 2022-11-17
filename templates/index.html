@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+
+{% if user.is_authenticated %}
+
+<body>
+    <div>
+        <p>{{request.user.username}}</p>
+        <p>{{request.user.profile.name}}</p>
+        <p>{{request.user.profile.email}}</p>
+        <p>{{request.user.profile.phone_number}}</p>
+    </div>
+</body>
+{% else %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../path/to/flowbite/dist/flowbite.js"></script>
+    <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <title>Django Authentication System</title>
+</head>
+<div style="padding-left: 900px;padding-right: 900px;">
+    <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName"
+        class="flex items-center text-sm font-medium text-black-900 rounded-full" type="button">
+        <span class="sr-only">Open user menu</span>
+        <h1 class="text-green-500">{{user.username}}</h1>
+        <svg class="w-4 h-4 mx-1.5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path>
+        </svg>
+    </button>
+    {% include 'alert.html' %}
+    <!-- Dropdown menu -->
+    <div id="dropdownAvatarName"
+        class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+        style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 5026px);"
+        data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom">
+        <div class="py-3 px-4 text-sm text-gray-900 dark:text-white">
+            <div class="font-medium ">{{user.first_name}} {{user.last_name}}</div>
+            <div class="truncate">{{user.email}}</div>
+        </div>
+        <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
+            aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
+            <li>
+                <a href="{% url 'profile' %}"
+                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
+            </li>
+            <li>
+                <a href="#"
+                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">AccountSettings</a>
+            </li>
+            <li>
+                <a href="{% url 'logout' %}"
+                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<body>
+    {% block content %}
+    {% endblock %}
+</body>
+
+</html>
